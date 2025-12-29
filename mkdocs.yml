@@ -12,6 +12,8 @@ theme:
 
 nav:
   - Home: index.md
+  - Architecture:
+      - Decisions: architecture/design-decisions.md
   # - Onboarding:
   #     - Getting Started: onboarding/getting-started.md
   # - Architecture:
@@ -24,6 +26,7 @@ nav:
   #     - Deployment: operations/deployment.md
 
 markdown_extensions:
+  - pymdownx.arithmatex # latex 
   - admonition
   - footnotes
   - toc:
