@@ -10,20 +10,15 @@ theme:
     - navigation.instant
     - content.code.copy
 
+# Defines the structure of the documentation
 nav:
   - Home: index.md
+  - Way of Working: way-of-working.md
   - Architecture:
       - Decisions: architecture/design-decisions.md
-  # - Onboarding:
-  #     - Getting Started: onboarding/getting-started.md
-  # - Architecture:
-  #     - Overview: architecture/overview.md
-  #     - Decisions: architecture/decisions.md
-  # - Development:
-  #     - Setup: development/setup.md
-  #     - Conventions: development/conventions.md
-  # - Operations:
-  #     - Deployment: operations/deployment.md
+
+# - Section name: 
+#    - Page name: path/to/page.md
 
 markdown_extensions:
   - pymdownx.arithmatex # latex 
