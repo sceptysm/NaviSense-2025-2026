@@ -1,0 +1,30 @@
+site_name: NaviSense
+repo_url: https://github.com/sceptysm/NaviSense-2025-2026
+repo_name: NaviSense 2025-2026
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.instant
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  # - Onboarding:
+  #     - Getting Started: onboarding/getting-started.md
+  # - Architecture:
+  #     - Overview: architecture/overview.md
+  #     - Decisions: architecture/decisions.md
+  # - Development:
+  #     - Setup: development/setup.md
+  #     - Conventions: development/conventions.md
+  # - Operations:
+  #     - Deployment: operations/deployment.md
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
