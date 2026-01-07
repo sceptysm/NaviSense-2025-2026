@@ -25,9 +25,8 @@ Clone the repository **outside of OneDrive** (e.g. `C:\Projects\`), as Unity and
 
 This repository uses **Git Large File Storage (LFS)** to manage point clouds (`.ply`) and large 3D assets (e.g. `.fbx`), as defined in `.gitattributes`.
 
-> **Note**: Active development currently happens on the `initial-upload` branch.
 ```bash
-git clone -b initial-upload https://github.com/sceptysm/NaviSense-2025-2026.git
+git clone https://github.com/sceptysm/NaviSense-2025-2026.git
 cd NaviSense-2025-2026
 ```
 
