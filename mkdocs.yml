@@ -12,8 +12,10 @@ theme:
 
 # Defines the structure of the documentation
 nav:
-  - Home: index.md
-  - Way of Working: way-of-working.md
+  - Begin Here:
+      - Home: index.md
+      - Way of Working: way-of-working.md
+      - Documentation Guide: how-to-use.md
   - Architecture:
       - Decisions: architecture/design-decisions.md
 
