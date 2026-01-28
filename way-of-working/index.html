@@ -39,12 +39,11 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                </li>
-              </ul>
+              <p class="caption"><span class="caption-text">Begin Here</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Way of Working</a>
+                  <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Way of Working</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#a-guide-to-our-collaborative-process">A Guide to Our Collaborative Process</a>
     </li>
@@ -88,22 +87,28 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#knowledge-management">Knowledge Management</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#cloud-onedrive">Cloud OneDrive</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-doctree">1. DocTree</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#github-repository">GitHub Repository</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2-cloud-onedrive">2. Cloud OneDrive</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-github-repository">3. GitHub Repository</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#1-feature-branch-workflow">1. Feature Branch Workflow</a>
+    <li class="toctree-l4"><a class="reference internal" href="#a-feature-branch-workflow">a. Feature Branch Workflow</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#2-merge-requests">2. Merge Requests</a>
+    <li class="toctree-l4"><a class="reference internal" href="#b-merge-requests">b. Merge Requests</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3-meaningful-commit-messages">3. Meaningful Commit Messages</a>
+    <li class="toctree-l4"><a class="reference internal" href="#c-meaningful-commit-messages">c. Meaningful Commit Messages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#d-archive-old-branch">d. Archive Old Branch</a>
     </li>
         </ul>
     </li>
         </ul>
     </li>
     </ul>
-                </li>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how-to-use/">Documentation Guide</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Architecture</span></p>
               <ul>
@@ -124,6 +129,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Begin Here</li>
       <li class="breadcrumb-item active">Way of Working</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/sceptysm/NaviSense-2025-2026/edit/master/docs/way-of-working.md">Edit on NaviSense 2025-2026</a>
@@ -163,13 +169,15 @@ The team reflects on:
 <p><strong>c. Backlog Update</strong><br />
 Completed items are signed off, and new tasks are added based on sprint outcomes.</p>
 <h3 id="project-backlog">Project Backlog<a class="headerlink" href="#project-backlog" title="Permanent link">&para;</a></h3>
-<p>The sprint process relies on a <strong>Project Backlog</strong>, maintained as:
-- A simple spreadsheet, or
-- A task management tool such as Trello or Asana</p>
+<p>The sprint process relies on a <strong>Project Backlog</strong>, currently maintained on the Clickup platform.</p>
 <p>Each backlog item should include:
 - A brief description
 - Priority level (High / Medium / Low)
 - Estimated effort</p>
+<p>Each backlog item must, most critically, be written in a testable manner - i.e. it should be easily understandable
+whether a task is complete OR not. Simple binary</p>
+<p>If a backlog item contains within it too many aspects to keep it reasonably simple, create additional subtask that decouple the responsibilities.
+The benefit of the subtasks is exactly that they become more easily testable, and division of tasks more paletable.</p>
 <hr />
 <h2 id="communication-channels">Communication Channels<a class="headerlink" href="#communication-channels" title="Permanent link">&para;</a></h2>
 <p>The team uses multiple communication channels to keep discussions organized and easy to reference.</p>
@@ -177,7 +185,7 @@ Completed items are signed off, and new tasks are added based on sprint outcomes
 <h3 id="discord-development-hub">Discord: Development Hub<a class="headerlink" href="#discord-development-hub" title="Permanent link">&para;</a></h3>
 <p>Discord serves as the primary development communication platform.</p>
 <h4 id="1-formal-discussions-log">1. Formal Discussions Log<a class="headerlink" href="#1-formal-discussions-log" title="Permanent link">&para;</a></h4>
-<p>All technical and design discussions must be logged in a dedicated <strong>Discussions</strong> channel to create a searchable decision history. This also applies to development issues where feedback from the team is needed.</p>
+<p>All technical and design discussions should be logged in a dedicated <strong>Discussions</strong> channel to create a searchable decision history. This also applies to development issues where feedback from the team is needed.</p>
 <p>Each discussion should follow this structure:</p>
 <ul>
 <li>
@@ -204,13 +212,11 @@ Completed items are signed off, and new tasks are added based on sprint outcomes
 - GitHub repository
 - OneDrive
 - Other relevant tools</p>
-<hr />
 <h3 id="whatsapp-social-and-personal-coordination">WhatsApp: Social and Personal Coordination<a class="headerlink" href="#whatsapp-social-and-personal-coordination" title="Permanent link">&para;</a></h3>
 <p>WhatsApp is reserved for informal and logistical communication, including:
 - Checking in on team well-being
 - Coordinating meetings
 - Non-technical discussions</p>
-<hr />
 <h3 id="communication-with-the-client">Communication with the Client<a class="headerlink" href="#communication-with-the-client" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Client communication occurs at the <strong>start of each sprint cycle</strong></li>
@@ -237,33 +243,30 @@ Completed items are signed off, and new tasks are added based on sprint outcomes
 <hr />
 <h2 id="knowledge-management">Knowledge Management<a class="headerlink" href="#knowledge-management" title="Permanent link">&para;</a></h2>
 <p>This section describes how the team captures and maintains knowledge throughout the project.</p>
-<hr />
-<h3 id="cloud-onedrive">Cloud OneDrive<a class="headerlink" href="#cloud-onedrive" title="Permanent link">&para;</a></h3>
-<p>The shared OneDrive stores all <strong>non-code project assets</strong>, ensuring access to the latest versions.</p>
+<h3 id="1-doctree">1. DocTree<a class="headerlink" href="#1-doctree" title="Permanent link">&para;</a></h3>
+<p>The DocTree is the definitive version of all the documentation kept for this project. Guides, decisions, design, project descriptions - these types of documents can all be found inside the DocTree.</p>
+<p>_TODO: Guide to adding new documents, guide on writing docs.  </p>
+<h3 id="2-cloud-onedrive">2. Cloud OneDrive<a class="headerlink" href="#2-cloud-onedrive" title="Permanent link">&para;</a></h3>
+<p>The shared OneDrive stores all <strong>non-code project assets</strong>.</p>
 <p><strong>Contents include:</strong>
 - <strong>Project Foundations</strong> – project descriptions, user personas, and long-term vision documents
 - <strong>Past Context</strong> – reports and materials from previous years
 - <strong>Research and Research Briefs</strong> – sources and research materials
 - <strong>Design and Architecture</strong> – detailed architecture and design documents
 - <strong>Organizational Documents</strong> – project backlog and sprint planning files</p>
-<hr />
-<h3 id="github-repository">GitHub Repository<a class="headerlink" href="#github-repository" title="Permanent link">&para;</a></h3>
+<h3 id="3-github-repository">3. GitHub Repository<a class="headerlink" href="#3-github-repository" title="Permanent link">&para;</a></h3>
 <p>All code is managed through a shared GitHub repository using a structured workflow.</p>
-<h4 id="1-feature-branch-workflow">1. Feature Branch Workflow<a class="headerlink" href="#1-feature-branch-workflow" title="Permanent link">&para;</a></h4>
-<ul>
-<li>New features must be developed on a branch created from the main development branch</li>
-<li>Branches should follow the naming convention:
+<h4 id="a-feature-branch-workflow">a. Feature Branch Workflow<a class="headerlink" href="#a-feature-branch-workflow" title="Permanent link">&para;</a></h4>
+<p>New features must be developed on a branch created from the main development branch
+Branches should follow the naming convention:
   feature-x-branch<br />
-  Example: user-login-branch</li>
-</ul>
-<h4 id="2-merge-requests">2. Merge Requests<a class="headerlink" href="#2-merge-requests" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Once a feature is complete and tested locally, a merge request is opened</li>
-<li>Each merge request must include:</li>
-<li>A clear description of the changes</li>
-<li>Relevant context for reviewers</li>
-</ul>
-<h4 id="3-meaningful-commit-messages">3. Meaningful Commit Messages<a class="headerlink" href="#3-meaningful-commit-messages" title="Permanent link">&para;</a></h4>
+  Example: user-login-branch</p>
+<h4 id="b-merge-requests">b. Merge Requests<a class="headerlink" href="#b-merge-requests" title="Permanent link">&para;</a></h4>
+<p>Once a feature is complete and tested locally, a merge request is opened.
+Each merge request must include:
+  - A clear description of the changes
+  - Relevant context for reviewers</p>
+<h4 id="c-meaningful-commit-messages">c. Meaningful Commit Messages<a class="headerlink" href="#c-meaningful-commit-messages" title="Permanent link">&para;</a></h4>
 <p>Clear and descriptive commit messages are mandatory.</p>
 <p>For significant feature work, commit messages should follow this structure:</p>
 <p>[Task or Feature Name]</p>
@@ -271,12 +274,14 @@ Completed items are signed off, and new tasks are added based on sprint outcomes
 I implemented the user registration endpoint by creating a new service and repository in the auth module.</p>
 <p>Next Steps:
 To complete the user login feature, I still need to implement token generation.</p>
+<h4 id="d-archive-old-branch">d. Archive Old Branch<a class="headerlink" href="#d-archive-old-branch" title="Permanent link">&para;</a></h4>
+<p>Once a merge request with a feature is passed, archive the old branch to keep the repository clean. </p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../architecture/design-decisions/" class="btn btn-neutral float-right" title="Decisions">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../how-to-use/" class="btn btn-neutral float-right" title="Documentation Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -306,7 +311,7 @@ To complete the user login feature, I still need to implement token generation.<
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../architecture/design-decisions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../how-to-use/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

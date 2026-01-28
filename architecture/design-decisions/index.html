@@ -13,7 +13,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Decisions";
-        var mkdocs_page_input_path = "architecture/design-decisions.md";
+        var mkdocs_page_input_path = "architecture\\design-decisions.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -39,18 +39,21 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Begin Here</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../way-of-working/">Way of Working</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../way-of-working/">Way of Working</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-use/">Documentation Guide</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Architecture</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Decisions</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#computer-vision">Computer Vision</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -80,12 +83,18 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="design-decisions">Design Decisions<a class="headerlink" href="#design-decisions" title="Permanent link">&para;</a></h1>
-<p>Hello World!</p>
+<p>As with all projects, NaviSense (especially NaviSense) has encountered many design decisions that forced it to change technologies and approaches to our given <a href="../../assets/NaviSense_Project_Description.pdf">problem</a>. In this document, we list Design choices we made and Technologies we picked to develop our solution while describing the design drivers, i.e. why a decision was made, and some alternatives considered.</p>
+<h2 id="computer-vision">Computer Vision<a class="headerlink" href="#computer-vision" title="Permanent link">&para;</a></h2>
+<p>Computer Vision is an approach to spatial analysis that uses machines to infer meaningful data from images and videos taken by a camera. With an input dataset of imagery, Computer Vision techniques can allow us to retrieve an accurate "scan", aka <em>point cloud</em>, through photogrammetry and the like, that can represent a given room and act the basis of location mapping. </p>
+<p>As of 2025/2026, we found that developing a Computer Vision App can work well to solve the problem of navigating visually impaired people indoors.</p>
+<p>One of the reasons why we have determined that we should use Computer Vision is the ease with which we can develop solutions with it. Currently, there are many open-source libraries that have already implemented machine learning and photogrammetry techniques. This means that we do not have to code the techniques from scratch while still maintaining access to well-performing libraries in this area. Additionally, our interviews with the end-users indicated that most of them need their hands free, as they like to have a walking stick in on hand and their phone in the other. This insight, taken as an assumption on the preferences of the end-user, means that any solution that the user would need to hold would not be very popular with the user. Unless, we are able to utilize the phone that is. Every single phone nowadays has access to a good camera as well as considerably powerful processing units, which allows us to develop the app without the need to plan out the hardware of the solution or pay for any components for that matter.  </p>
+<p>Another reason to consider is that future phones are likely to work even better with Computer Vision. As time progresses, every single computing device improves with both power, and the quality of its components. The obvious increase in quality can happen to the Camera, which should make real time room scans better. However, there is in fact a more interesting future benefit of using a phone app as the solution to our problem - currently, the only major problem seems to be that white, near identical, spaces are hard to distinguish unless one is utilizing a memory mechanism, i.e. by recording the space traversed by the user, to localize the user. A very common solution to this problem is to use LiDAR to accompany the visual footage with depth analysis of the point cloud, as well as real-time localisation. At this time, the use of LiDAR is both very expensive, and would require the creation of an additional device for the user to wear. However, some of the newest phones are already equipped with a LiDAR themselves! or also support other means of depth analysis! As time progresses, this technology is bound to be a more prevalent feature of the common phone, and as such, will support the Computer Vision Phone App solution even better. </p>
+<p>It is important to note some of the alternatives we considered; we list them and their issues briefly. These include Ultra-Widebands, LiDAR, and Wi-Fi and Bluetooth Triangulation. The problem with Ultra-Widebands is two-fold: two expensive, and difficult to set up. As Ultra-Widebands are a beacon-based technology, meaning they require a crew to setup actual beacons/devices around a complex to map it out, it would be both expensive to have a crew for setting it up, as well as inconvenient when it comes to figuring out the legalistic side of things behind implementing this in public spaces. In particular, we have been tipped of that beacon-based technologies are especially unpopular with the 'hosting' client. These also include Wi-Fi and Bluetooth Triangulation as these also work on a set up network of beacons that triangulate the directions of incoming signals to infer the end-user's position. Moreover, Wi-Fi and Bluetooth have been found to be quite inaccurate when it comes to indoor localisation, which is crucial for a visually impaired user that is really relying on accurate information to be provided to him about the space they are in at all times. Lastly, we have found LiDAR on its own to be ridiculously expensive to get when it is a reliable, fast one, or completely inadequate for personal use when the LiDAR is cheap. You can find further information on these findings <a href="../../assets/Navisense2025.pdf">here</a>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../way-of-working/" class="btn btn-neutral float-left" title="Way of Working"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../how-to-use/" class="btn btn-neutral float-left" title="Documentation Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -112,7 +121,7 @@
         </span>
     
     
-      <span><a href="../../way-of-working/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../how-to-use/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
