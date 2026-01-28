@@ -2,7 +2,7 @@
 
 Welcome to the NaviSense project docs! Here you'll find key artifacts and design information. 
 
-For guidance on how to manage the Documentation [click here](how-to-use.md).
+For guidance on how to manage the docs, [click here](how-to-use.md).
 
 ## Description
 
