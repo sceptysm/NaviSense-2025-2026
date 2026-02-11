@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Navigation/NavMesh_custom.unity
-    guid: 586c1819a8c729d4db6e722c1bf474d8
+    path: Assets/Scenes/Demo/Demo.unity
+    guid: 1092aa97e4ccd483596d6defed7bf4dc
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 8dae728989d88764293dd11ffd0ceae9, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 48e883c3fd785214a860f81ca210087a, type: 2}
