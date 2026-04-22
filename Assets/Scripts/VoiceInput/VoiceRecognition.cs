@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 public class VoiceRecognition : MonoBehaviour
 {
     [Header("Google API Key")]
-    public string apiKey = "AIzaSyC3BqcQLaSIsnLgJCfYPTsR_s7GZuwlvLg";
+    public string apiKey = "";
 
     [Header("Recording Settings")]
     public int recordingLength = 5;
@@ -106,7 +106,6 @@ public class VoiceRecognition : MonoBehaviour
             HandleResponse(request.downloadHandler.text);
         }
     }
-    // public string apiKey = "AIzaSyC3BqcQLaSIsnLgJCfYPTsR_s7GZuwlvLg";
 
     void HandleResponse(string json)
     {
