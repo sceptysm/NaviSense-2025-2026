@@ -160,6 +160,20 @@ namespace Immersal.Samples.Navigation
             TryToFindPath(m_NavigationTarget);
         }
 
+        public void InitializeNavigationDirect(IsNavigationTarget target)
+        {
+            if (!m_managerInitialized)
+            {
+                Debug.LogWarning("NavigationManager not initialized");
+                return;
+            }
+
+            m_targetTransform = target.transform;
+            m_NavigationTarget = target;
+
+            TryToFindPath(target);
+        }
+
         public void TryToFindPath(IsNavigationTarget navigationTarget)
         {
             List<Vector3> corners;
