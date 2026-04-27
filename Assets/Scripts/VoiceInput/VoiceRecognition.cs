@@ -5,7 +5,6 @@ using System.Text;
 using System;
 using System.Collections.Generic;
 using Immersal.Samples.Navigation;
-using Newtonsoft.Json.Linq;
 
 public class VoiceRecognition : MonoBehaviour
 {
@@ -36,20 +35,16 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update()
     {
-        // Only allow voice when target selection UI is open
-        if (!IsTargetSelectionActive())
-            return;
-
 #if UNITY_EDITOR
-        // Keyboard only for testing in editor
-        if (Input.GetKeyDown(KeyCode.V) && !isRecording)
+        // Only allow voice when navigation target menu is open
+        if (IsTargetSelectionActive() && Input.GetKeyDown(KeyCode.V) && !isRecording)
         {
             StartRecording();
         }
 #endif
     }
 
-    // Call this from a UI button
+    // Call this from a UI Button (recommended for mobile)
     public void StartVoiceInput()
     {
         if (!IsTargetSelectionActive())
@@ -69,7 +64,7 @@ public class VoiceRecognition : MonoBehaviour
         if (NavigationManager.Instance == null)
             return false;
 
-        return NavigationManager.Instance.TargetsListIsOpen();
+        return NavigationManager.Instance.IsTargetsListOpen();
     }
 
     void StartRecording()
@@ -136,18 +131,49 @@ public class VoiceRecognition : MonoBehaviour
         }
     }
 
+    // ---------------- RESPONSE MODELS ----------------
+
+    [Serializable]
+    public class GoogleResponseWrapper
+    {
+        public Result[] results;
+    }
+
+    [Serializable]
+    public class Result
+    {
+        public Alternative[] alternatives;
+    }
+
+    [Serializable]
+    public class Alternative
+    {
+        public string transcript;
+    }
+
+    // ---------------- RESPONSE HANDLING ----------------
+
     void HandleResponse(string json)
     {
         try
         {
-            var parsed = JObject.Parse(json);
+            GoogleResponseWrapper response =
+                JsonUtility.FromJson<GoogleResponseWrapper>(json);
+
+            if (response == null ||
+                response.results == null ||
+                response.results.Length == 0)
+            {
+                Debug.Log("No speech recognized");
+                return;
+            }
 
             string transcript =
-                parsed["results"]?[0]?["alternatives"]?[0]?["transcript"]?.ToString();
+                response.results[0].alternatives[0].transcript;
 
             if (string.IsNullOrEmpty(transcript))
             {
-                Debug.Log("No speech recognized");
+                Debug.Log("Empty transcript");
                 return;
             }
 
@@ -161,6 +187,8 @@ public class VoiceRecognition : MonoBehaviour
         }
     }
 
+    // ---------------- COMMAND HANDLING ----------------
+
     void HandleCommand(string command)
     {
         Debug.Log("Processing command: " + command);
@@ -171,7 +199,8 @@ public class VoiceRecognition : MonoBehaviour
             {
                 IsNavigationTarget navTarget = target.GetComponent<IsNavigationTarget>();
 
-                if (navTarget == null) continue;
+                if (navTarget == null)
+                    continue;
 
                 string targetName = navTarget.targetName.ToLower();
 

@@ -114,6 +114,11 @@ namespace Immersal.Samples.Navigation
             get { return m_navigationActive; }
         }
 
+        public bool IsTargetsListOpen()
+        {
+            return m_TargetsList != null && m_TargetsList.activeInHierarchy;
+        }
+
         void Awake()
         {
             if (instance == null)
