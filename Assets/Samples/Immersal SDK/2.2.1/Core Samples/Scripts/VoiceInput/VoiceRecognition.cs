@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 public class VoiceRecognition : MonoBehaviour
 {
     [Header("Google API Key")]
-    public string apiKey = "";
+    public string apiKey = ApiKeyConfig.GOOGLE_API_KEY;
 
     [Header("Recording Settings")]
     public int recordingLength = 5;
@@ -36,11 +36,40 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update()
     {
-        // Press V to start voice input
+        // Only allow voice when target selection UI is open
+        if (!IsTargetSelectionActive())
+            return;
+
+#if UNITY_EDITOR
+        // Keyboard only for testing in editor
         if (Input.GetKeyDown(KeyCode.V) && !isRecording)
         {
             StartRecording();
         }
+#endif
+    }
+
+    // Call this from a UI button
+    public void StartVoiceInput()
+    {
+        if (!IsTargetSelectionActive())
+        {
+            Debug.Log("Voice disabled: Target menu not open");
+            return;
+        }
+
+        if (!isRecording)
+        {
+            StartRecording();
+        }
+    }
+
+    bool IsTargetSelectionActive()
+    {
+        if (NavigationManager.Instance == null)
+            return false;
+
+        return NavigationManager.Instance.TargetsListIsOpen();
     }
 
     void StartRecording()
@@ -51,7 +80,7 @@ public class VoiceRecognition : MonoBehaviour
             return;
         }
 
-        Debug.Log("🎤 Recording started...");
+        Debug.Log("Recording started.");
         clip = Microphone.Start(micDevice, false, recordingLength, frequency);
         isRecording = true;
 
@@ -63,7 +92,7 @@ public class VoiceRecognition : MonoBehaviour
         Microphone.End(micDevice);
         isRecording = false;
 
-        Debug.Log("⏳ Processing voice...");
+        Debug.Log("Processing voice.");
 
         byte[] wavData = WavUtility.FromAudioClip(clip);
         StartCoroutine(SendToGoogle(wavData));
@@ -122,7 +151,7 @@ public class VoiceRecognition : MonoBehaviour
                 return;
             }
 
-            Debug.Log("🗣 You said: " + transcript);
+            Debug.Log("You said: " + transcript);
 
             HandleCommand(transcript.ToLower());
         }
@@ -146,10 +175,9 @@ public class VoiceRecognition : MonoBehaviour
 
                 string targetName = navTarget.targetName.ToLower();
 
-                if (command.IndexOf(targetName, StringComparison.OrdinalIgnoreCase) >= 0)
+                if (command.Contains(targetName))
                 {
-                    Debug.Log("🎯 Matched target: " + navTarget.targetName);
-
+                    Debug.Log("Matched target: " + navTarget.targetName);
                     StartNavigation(navTarget);
                     return;
                 }
@@ -161,9 +189,8 @@ public class VoiceRecognition : MonoBehaviour
 
     void StartNavigation(IsNavigationTarget navTarget)
     {
-        Debug.Log("🚀 Navigating to: " + navTarget.targetName);
+        Debug.Log("Navigating to: " + navTarget.targetName);
 
-        // Direct integration (no fake UI buttons)
         NavigationManager.Instance.InitializeNavigationDirect(navTarget);
     }
 }
