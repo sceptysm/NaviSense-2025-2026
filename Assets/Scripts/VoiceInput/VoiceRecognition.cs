@@ -18,28 +18,58 @@ public class VoiceRecognition : MonoBehaviour
     private AudioClip clip;
     private bool isRecording = false;
     private string micDevice;
+    private bool micAllowed = false;
 
-    void Start()
+    private bool autoStarted = false;
+
+    IEnumerator Start()
     {
-        // Select microphone safely
+        yield return RequestMicPermission();
+
+        if (!micAllowed)
+        {
+            Debug.LogError("Mic permission not granted");
+            yield break;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
         if (Microphone.devices.Length > 0)
         {
             micDevice = Microphone.devices[0];
             Debug.Log("Mic found: " + micDevice);
+
+            Microphone.Start(micDevice, true, 10, 44100);
+            Debug.Log("Microphone started");
         }
         else
         {
-            Debug.LogError("No microphone detected!");
+            Debug.LogError("No microphone detected after permission");
         }
+    }
+
+    IEnumerator RequestMicPermission()
+    {
+        yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
+
+        micAllowed = Application.HasUserAuthorization(UserAuthorization.Microphone);
+
+        Debug.Log("Mic permission: " + micAllowed);
     }
 
     void Update()
     {
 #if UNITY_EDITOR
         // Only allow voice when navigation target menu is open
-        if (IsTargetSelectionActive() && Input.GetKeyDown(KeyCode.V) && !isRecording)
+        if (IsTargetSelectionActive() && !autoStarted)
         {
+            autoStarted = true;
             StartRecording();
+        }
+
+        if (!IsTargetSelectionActive())
+        {
+            autoStarted = false;
         }
 #endif
     }
@@ -69,6 +99,12 @@ public class VoiceRecognition : MonoBehaviour
 
     void StartRecording()
     {
+        if (!micAllowed)
+        {
+            Debug.LogError("Mic not allowed yet");
+            return;
+        }
+
         if (micDevice == null)
         {
             Debug.LogError("No microphone available");
@@ -131,7 +167,7 @@ public class VoiceRecognition : MonoBehaviour
         }
     }
 
-    // ---------------- RESPONSE MODELS ----------------
+    // Response Models
 
     [Serializable]
     public class GoogleResponseWrapper
@@ -151,7 +187,7 @@ public class VoiceRecognition : MonoBehaviour
         public string transcript;
     }
 
-    // ---------------- RESPONSE HANDLING ----------------
+    // Response Handling
 
     void HandleResponse(string json)
     {
@@ -187,7 +223,7 @@ public class VoiceRecognition : MonoBehaviour
         }
     }
 
-    // ---------------- COMMAND HANDLING ----------------
+    // Command Handling
 
     void HandleCommand(string command)
     {
