@@ -115,6 +115,11 @@ namespace Immersal.Samples.Navigation
             get { return m_navigationActive; }
         }
 
+        public bool IsTargetsListOpen()
+        {
+            return m_TargetsList != null && m_TargetsList.activeInHierarchy;
+        }
+
         void Awake()
         {
             if (instance == null)
@@ -159,6 +164,20 @@ namespace Immersal.Samples.Navigation
             m_targetTransform = button.targetObject.transform;
             m_NavigationTarget = button.targetObject.GetComponent<IsNavigationTarget>();
             TryToFindPath(m_NavigationTarget);
+        }
+
+        public void InitializeNavigationDirect(IsNavigationTarget target)
+        {
+            if (!m_managerInitialized)
+            {
+                Debug.LogWarning("NavigationManager not initialized");
+                return;
+            }
+
+            m_targetTransform = target.transform;
+            m_NavigationTarget = target;
+
+            TryToFindPath(target);
         }
 
         public void TryToFindPath(IsNavigationTarget navigationTarget)
