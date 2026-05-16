@@ -12,6 +12,7 @@ namespace Immersal.Samples.Navigation
         private bool hasPath = false;
 
         [Header("Haptic Settings")]
+        
         [Tooltip("Angle within which no vibration occurs (dead zone)")]
         public float alignmentDeadZone = 10f;
 

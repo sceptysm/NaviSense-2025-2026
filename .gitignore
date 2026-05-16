@@ -90,6 +90,9 @@ mono_crash.*
 *.unitypackage.meta
 *.app
 
+# API key
+/[Aa]ssets/Resources/ApiKeyConfig.cs
+
 # Crashlytics generated file
 crashlytics-build.properties
 
