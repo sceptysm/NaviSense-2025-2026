@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Demo/Demo.unity
     guid: 1092aa97e4ccd483596d6defed7bf4dc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Navigation/NavMesh_custom.unity
     guid: 586c1819a8c729d4db6e722c1bf474d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Navigation/Metaforumtest.unity
     guid: c672a72f315ef4d19b25c36bc8a048cc
   m_configObjects:

@@ -2638,10 +2638,11 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2a71618a0f90f7344b1631fcee3067cb, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 1713013219}
+        m_TargetAssemblyTypeName: Immersal.Samples.VoiceNavigation.VoiceDestinationSelector,
+          Assembly-CSharp
+        m_MethodName: BeginVoiceSelection
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
