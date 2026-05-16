@@ -33,10 +33,22 @@ namespace Immersal.Samples.Navigation
         }
 
         private Collider m_collider = null;
+        private static HapticNavigationFeedback s_hapticFeedback = null;
 
         private void Start()
         {
             NavigationGraphManager.Instance?.AddTarget(this);
+
+            // Find haptic feedback manager once at the start
+            if (s_hapticFeedback == null)
+            {
+                s_hapticFeedback = FindObjectOfType<HapticNavigationFeedback>();
+                
+                if (s_hapticFeedback == null)
+                {
+                    Debug.LogWarning("HapticNavigationFeedback not found in scene. Haptic feedback will not work.");
+                }
+            }
         }
 
         private void OnDestroy()
@@ -63,6 +75,24 @@ namespace Immersal.Samples.Navigation
         {
             if (NavigationTargets.NavigationTargetsDict.ContainsKey(navigationCategory))
                 NavigationTargets.NavigationTargetsDict[navigationCategory].Remove(gameObject);
+        }
+
+        public void OnTargetSelected()
+        {
+            if (s_hapticFeedback != null)
+            {
+                s_hapticFeedback.StartNavigation();
+                Debug.Log($"Started haptic navigation to: {targetName}");
+            }
+        }
+        
+        public void OnTargetDeselected()
+        {
+            if (s_hapticFeedback != null)
+            {
+                s_hapticFeedback.StopNavigation();
+                Debug.Log($"Stopped haptic navigation to: {targetName}");
+            }
         }
     }
 }

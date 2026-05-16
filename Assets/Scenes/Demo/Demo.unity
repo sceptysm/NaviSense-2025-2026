@@ -196,6 +196,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 401265314}
     m_Modifications:
+    - target: {fileID: 751255778667301238, guid: 42eb4d1475376514cba38965b11157f1, type: 3}
+      propertyPath: targetName
+      value: A
+      objectReference: {fileID: 0}
     - target: {fileID: 5414835429011125150, guid: 42eb4d1475376514cba38965b11157f1, type: 3}
       propertyPath: m_Name
       value: Navigation Target A
@@ -1350,6 +1354,7 @@ GameObject:
   - component: {fileID: 866472568}
   - component: {fileID: 866472566}
   - component: {fileID: 866472575}
+  - component: {fileID: 866472576}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1642,6 +1647,26 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+--- !u!114 &866472576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866472564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8906073af51140fc9893d61381b0c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  destination: {fileID: 0}
+  arCamera: {fileID: 866472565}
+  maxAngleForVibration: 180
+  minVibrationInterval: 0.1
+  maxVibrationInterval: 1
+  vibrationDuration: 0.1
+  vibrationDeadZoneAngle: 15
+  minDistanceForHaptics: 0.5
 --- !u!1 &967770022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,6 +2750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 401265314}
     m_Modifications:
+    - target: {fileID: 751255778667301238, guid: 42eb4d1475376514cba38965b11157f1, type: 3}
+      propertyPath: targetName
+      value: B
+      objectReference: {fileID: 0}
     - target: {fileID: 5414835429011125150, guid: 42eb4d1475376514cba38965b11157f1, type: 3}
       propertyPath: m_Name
       value: Navigation Target B

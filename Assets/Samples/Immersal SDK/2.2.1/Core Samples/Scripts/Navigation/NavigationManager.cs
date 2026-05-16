@@ -67,6 +67,7 @@ namespace Immersal.Samples.Navigation
         private float m_pathWidth = 0.3f;
         [SerializeField]
         private float m_heightOffset = 0.5f;
+        private HapticNavigationFeedback m_hapticFeedback = null;
 
         // Navigation State Events
         [Header("Events")]
@@ -176,6 +177,7 @@ namespace Immersal.Samples.Navigation
                 m_navigationActive = false;
 
                 m_navigationState = NavigationState.NotNavigating;
+                UpdateHapticFeedback(false);
                 UpdateNavigationUI(m_navigationState);
 
                 DisplayArrivedNotification();
@@ -195,6 +197,8 @@ namespace Immersal.Samples.Navigation
                         m_navigationActive = true;
 
                         m_navigationState = NavigationState.Navigating;
+                        UpdateHapticFeedback(true);
+                        m_hapticFeedback?.UpdatePath(corners);
                         UpdateNavigationUI(m_navigationState);
 
                         m_navigationPath.GeneratePath(corners, m_XRSpace.transform.up);
@@ -203,6 +207,7 @@ namespace Immersal.Samples.Navigation
                     else
                     {
                         NotificationManager.Instance.GenerateNotification("Path to target not found.");
+                        UpdateHapticFeedback(false);
                         UpdateNavigationUI(m_navigationState);
                     }
                     break;
@@ -216,6 +221,8 @@ namespace Immersal.Samples.Navigation
                         m_navigationActive = true;
 
                         m_navigationState = NavigationState.Navigating;
+                        UpdateHapticFeedback(true);
+                        m_hapticFeedback?.UpdatePath(corners);
                         UpdateNavigationUI(m_navigationState);
 
                         m_navigationPath.GeneratePath(corners, m_XRSpace.transform.up);
@@ -224,6 +231,7 @@ namespace Immersal.Samples.Navigation
                     else
                     {
                         NotificationManager.Instance.GenerateNotification("Path to target not found.");
+                        UpdateHapticFeedback(false);
                         UpdateNavigationUI(m_navigationState);
                     }
                     break;
@@ -326,9 +334,25 @@ namespace Immersal.Samples.Navigation
             m_navigationActive = false;
 
             m_navigationState = NavigationState.NotNavigating;
+            UpdateHapticFeedback(false);
             UpdateNavigationUI(m_navigationState);
 
             NotificationManager.Instance.GenerateNotification("Navigation stopped.");
+        }
+
+        private void UpdateHapticFeedback(bool active)
+        {
+            if (m_hapticFeedback == null)
+                return;
+
+            if (active)
+            {
+                m_hapticFeedback.StartNavigation();
+            }
+            else
+            {
+                m_hapticFeedback.StopNavigation();
+            }
         }
 
         private void UpdateNavigationUI(NavigationState navigationState)
@@ -432,6 +456,14 @@ namespace Immersal.Samples.Navigation
             }
 
             m_managerInitialized = true;
+
+            // In InitializeNavigationManager(), after m_managerInitialized = true (around line 430)
+            // Find the haptic feedback component
+            m_hapticFeedback = FindObjectOfType<HapticNavigationFeedback>();
+            if (m_hapticFeedback == null)
+            {
+                Debug.LogWarning("NavigationManager: HapticNavigationFeedback not found in scene.");
+            }
         }
 
         private Vector3 XRSpaceToUnity(Transform XRSpace, Matrix4x4 XRSpaceOffset, Vector3 pos)
