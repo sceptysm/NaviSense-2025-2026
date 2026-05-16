@@ -2547,7 +2547,7 @@ MonoBehaviour:
   recordingSeconds: 5
   sampleRate: 16000
   confidenceThreshold: 0.6
-  destinationLabel: {fileID: 0}
+  destinationLabel: {fileID: 2082861007}
 --- !u!1 &1760526068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,7 +2723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -564, y: -459}
+  m_AnchoredPosition: {x: -100, y: -568}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082861007
@@ -3014,7 +3014,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 150626426341756246, guid: 54cb9a8b5c431e84ca2942c39c10b316, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -270
+      value: -467
       objectReference: {fileID: 0}
     - target: {fileID: 228920193075142482, guid: 54cb9a8b5c431e84ca2942c39c10b316, type: 3}
       propertyPath: m_LocalPosition.y

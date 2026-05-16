@@ -27,7 +27,7 @@ namespace Immersal.Samples.VoiceNavigation
 
         [Header("Recording")]
         [SerializeField] private int recordingSeconds = 5;
-        [SerializeField] private int sampleRate= 16000;
+        [SerializeField] private int sampleRate = 16000;
 
         [Header("Matching")]
         [Tooltip("0 = accept any partial match, 1 = exact only. 0.6 is a sensible default.")]
@@ -36,7 +36,7 @@ namespace Immersal.Samples.VoiceNavigation
         [Header("Debug Label")]
         [Tooltip("Displays the currently selected destination. Shows 'Select Destination' when none is active.")]
         [SerializeField] private TextMeshProUGUI destinationLabel;
-    
+
         private const string DEFAULT_LABEL = "Select Destination";
 
 
@@ -47,7 +47,7 @@ namespace Immersal.Samples.VoiceNavigation
 
         // Events ===============
 
-        
+
         public event Action<string> OnDestinationSelected;
         public event Action OnNoMatchFound;
 
@@ -123,17 +123,17 @@ namespace Immersal.Samples.VoiceNavigation
                 sampleRate,
                 result => transcript = result
             );
-    
+
             if (string.IsNullOrEmpty(transcript))
             {
                 Debug.LogWarning("[VoiceDestination] Nothing recognised.");
                 OnNoMatchFound?.Invoke();
                 yield break;
             }
-    
+
             Debug.Log($"[VoiceDestination] Heard: \"{transcript}\"");
-            TryNavigateTo(transcript.ToLower());
             SetLabel(transcript);
+            TryNavigateTo(transcript.ToLower());
         }
 
         // Destination Matching ===============
@@ -142,20 +142,20 @@ namespace Immersal.Samples.VoiceNavigation
         {
             IsNavigationTarget bestMatch = null;
             float bestScore = 0f;
-    
+
             foreach (var target in FindObjectsOfType<IsNavigationTarget>())
             {
                 if (string.IsNullOrEmpty(target.targetName)) continue;
-    
+
                 float score = FuzzyMatcher.MatchScore(transcript, target.targetName.ToLower());
-    
+
                 if (score > bestScore)
                 {
                     bestScore = score;
                     bestMatch = target;
                 }
             }
-    
+
             if (bestMatch != null && bestScore >= confidenceThreshold)
             {
                 Debug.Log($"[VoiceDestination] Matched '{bestMatch.targetName}' (score {bestScore:P})");
