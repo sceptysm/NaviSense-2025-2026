@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Text;
 using Immersal.Samples.Navigation;
+using TMPro;
 
 /// <summary>
 /// Plays an audio prompt, records the user's spoken destination,
@@ -32,6 +33,13 @@ namespace Immersal.Samples.VoiceNavigation
         [Tooltip("0 = accept any partial match, 1 = exact only. 0.6 is a sensible default.")]
         [SerializeField, Range(0f, 1f)] private float confidenceThreshold = 0.6f;
 
+        [Header("Debug Label")]
+        [Tooltip("Displays the currently selected destination. Shows 'Select Destination' when none is active.")]
+        [SerializeField] private TextMeshProUGUI destinationLabel;
+    
+        private const string DEFAULT_LABEL = "Select Destination";
+
+
         // States ===============
 
         private bool isRecording;
@@ -46,6 +54,8 @@ namespace Immersal.Samples.VoiceNavigation
 
         private IEnumerator Start()
         {
+
+            SetLabel(DEFAULT_LABEL);
             yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
 
             if (!Application.HasUserAuthorization(UserAuthorization.Microphone))
@@ -123,11 +133,12 @@ namespace Immersal.Samples.VoiceNavigation
     
             Debug.Log($"[VoiceDestination] Heard: \"{transcript}\"");
             TryNavigateTo(transcript.ToLower());
+            SetLabel(transcript);
         }
 
         // Destination Matching ===============
 
-            private void TryNavigateTo(string transcript)
+        private void TryNavigateTo(string transcript)
         {
             IsNavigationTarget bestMatch = null;
             float bestScore = 0f;
@@ -156,6 +167,21 @@ namespace Immersal.Samples.VoiceNavigation
                 Debug.LogWarning($"[VoiceDestination] No match above threshold for \"{transcript}\"");
                 OnNoMatchFound?.Invoke();
             }
+        }
+
+        /// <summary>
+        /// Resets the label to the default.
+        /// Wire this to NavigationManager's onTargetFound event in the Inspector.
+        /// </summary>
+        public void ResetLabel()
+        {
+            SetLabel(DEFAULT_LABEL);
+        }
+
+        private void SetLabel(string text)
+        {
+            if (destinationLabel != null)
+                destinationLabel.text = text;
         }
     }
 }

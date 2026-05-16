@@ -93,6 +93,9 @@ namespace Immersal.Samples.Navigation
 
         private static NavigationManager instance = null;
         public static NavigationManager Instance
+
+
+        
         {
             get
             {
