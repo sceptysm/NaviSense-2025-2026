@@ -74,7 +74,7 @@ public class VoiceRecognition : MonoBehaviour
 #endif
     }
 
-    // Call this from a UI Button (recommended for mobile)
+    // Call this from a UI Button
     public void StartVoiceInput()
     {
         if (!IsTargetSelectionActive())
